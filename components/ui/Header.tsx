@@ -32,22 +32,22 @@ interface DropdownVisual {
 }
 
 const DEFAULT_DROPDOWN: DropdownLink[] = [
-    { id: "dl-1", label: "T-Shirts", link: "/collections/t-shirts" },
-    { id: "dl-2", label: "Bottoms", link: "/collections/bottoms" },
-    { id: "dl-3", label: "Outwear", link: "/collections/outwear" },
-    { id: "dl-4", label: "Knitwear", link: "/collections/knitwear" },
-    { id: "dl-5", label: "Denim Studio", link: "/collections/denim-studio" },
+    { id: "dl-1", label: "T-SHIRTS", link: "/collections/t-shirts" },
+    { id: "dl-2", label: "BOTTOMS", link: "/collections/bottoms" },
+    { id: "dl-3", label: "OUTWEAR", link: "/collections/outwear" },
+    { id: "dl-4", label: "KNITWEAR", link: "/collections/knitwear" },
+    { id: "dl-5", label: "DENIM STUDIO", link: "/collections/denim-studio" },
 ];
 
 const DEFAULT_EXTRA: ExtraLink[] = [
-    { id: "el-1", label: "Campaigns", link: "/campaigns" },
+    { id: "el-1", label: "CAMPAIGNS", link: "/campaigns" },
     { id: "el-2", label: "Sokağın Ritmi", link: "/discover" },
 ];
 
 const DEFAULT_VISUALS: DropdownVisual[] = [
-    { id: "dv-1", type: "large", title: "Outwear", subtitle: "Featured Drop", image: "/category-outwear.png", link: "/collections/outwear" },
-    { id: "dv-2", type: "small", title: "Accessories", image: "/category-accessories.png", link: "/collections/accessories" },
-    { id: "dv-3", type: "small", title: "Headwear", image: "/category-headwear.png", link: "/collections/headwear" },
+    { id: "dv-1", type: "large", title: "OUTWEAR", subtitle: "FEATURED DROP", image: "/category-outwear.png", link: "/collections/outwear" },
+    { id: "dv-2", type: "small", title: "ACCESSORIES", image: "/category-accessories.png", link: "/collections/accessories" },
+    { id: "dv-3", type: "small", title: "HEADWEAR", image: "/category-headwear.png", link: "/collections/headwear" },
 ];
 
 export default function Header() {
@@ -122,7 +122,7 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center justify-center gap-10 flex-1 h-full z-50">
                         <Link href="/new" className={`text-sm font-bold uppercase tracking-widest transition-colors ${isDarkText ? "text-primary-900 hover:text-danger" : "text-white hover:text-danger"}`}>
-                            New Season
+                            NEW SEASON
                         </Link>
 
                         {/* Collections Dropdown Trigger */}
@@ -131,15 +131,15 @@ export default function Header() {
                             onMouseEnter={() => setActiveMenu("collections")}
                         >
                             <button className={`text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-1 group ${isDarkText ? "text-primary-900/80 hover:text-primary-900" : "text-white/80 hover:text-white"}`}>
-                                Collections
+                                COLLECTIONS
                             </button>
                         </div>
 
                         <Link href="/campaigns" className={`text-sm font-medium uppercase tracking-widest transition-colors ${isDarkText ? "text-primary-900/80 hover:text-primary-900" : "text-white/80 hover:text-white"}`}>
-                            Campaigns
+                            CAMPAIGNS
                         </Link>
                         <Link href="/about" className={`text-sm font-medium uppercase tracking-widest transition-colors ${isDarkText ? "text-primary-900/80 hover:text-primary-900" : "text-white/80 hover:text-white"}`}>
-                            About
+                            ABOUT
                         </Link>
                     </nav>
 
@@ -193,7 +193,7 @@ export default function Header() {
                                     <div className="w-1/3 flex flex-col gap-8">
                                         <div>
                                             <h4 className={`text-xs font-bold uppercase tracking-widest mb-4 border-b pb-2 ${isLightThemePage ? "text-primary-900/50 border-primary-900/10" : "text-white/50 border-white/10"}`}>
-                                                Ready to Wear
+                                                READY TO WEAR
                                             </h4>
                                             <ul className="flex flex-col gap-1">
                                                 {dropdownLinks.map((item) => (
@@ -293,14 +293,14 @@ export default function Header() {
                             {/* Mobile Menu Links */}
                             <div className="flex-1 overflow-y-auto px-6 py-12 flex flex-col gap-8">
                                 <Link href="/new" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-display uppercase tracking-tighter text-white hover:text-danger transition-colors">
-                                    New Season
+                                    NEW SEASON
                                 </Link>
                                 <Link href="/campaigns" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-display uppercase tracking-tighter text-white hover:text-danger transition-colors">
-                                    Campaigns
+                                    CAMPAIGNS
                                 </Link>
 
                                 <div className="flex flex-col gap-4 border-y border-white/10 py-8">
-                                    <h4 className="text-white/50 text-xs font-bold uppercase tracking-widest">Collections</h4>
+                                    <h4 className="text-white/50 text-xs font-bold uppercase tracking-widest">COLLECTIONS</h4>
                                     {dropdownLinks.map((item) => (
                                         <Link
                                             key={item.id}

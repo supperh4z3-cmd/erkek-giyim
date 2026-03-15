@@ -134,7 +134,7 @@ export default function CollectionsPage() {
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <span className="text-xs uppercase tracking-widest text-primary-900/50 hidden md:block">Sort By:</span>
+                                <span className="text-xs uppercase tracking-widest text-primary-900/50 hidden md:block">SORT BY:</span>
                                 <select
                                     className="bg-transparent border-none text-primary-900 font-bold uppercase tracking-widest text-xs outline-none cursor-pointer"
                                     value={sortBy}
