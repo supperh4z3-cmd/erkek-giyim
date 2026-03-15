@@ -339,7 +339,7 @@ export async function sendOrderConfirmation(order: OrderData) {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td align="center" style="padding-top: 8px;">
-                    <a href="${BRAND_URL}/account" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 4px 15px rgba(239,68,68,0.3);">Siparişimi Takip Et</a>
+                    <a href="${BRAND_URL}/account?tab=orders" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 4px 15px rgba(239,68,68,0.3);">Siparişimi Takip Et</a>
                 </td>
             </tr>
         </table>
@@ -434,7 +434,7 @@ export async function sendShippingNotification(data: ShippingData) {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td align="center" style="padding-top: 8px;">
-                    <a href="${BRAND_URL}/account" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #22c55e, #16a34a); color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 4px 15px rgba(34,197,94,0.3);">Kargonu Takip Et</a>
+                    <a href="${BRAND_URL}/account?tab=orders" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #22c55e, #16a34a); color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 4px 15px rgba(34,197,94,0.3);">Kargonu Takip Et</a>
                 </td>
             </tr>
         </table>
@@ -653,5 +653,88 @@ export async function sendPasswordResetEmail(data: PasswordResetData) {
         emailLayout(content, `Hesabınız için şifre sıfırlama bağlantısı`, data.customerEmail),
         `Merhaba ${data.customerName}, şifre sıfırlama bağlantınız: ${data.resetUrl} — Bu bağlantı 1 saat geçerlidir.`,
         true // transactional — always deliver
+    );
+}
+
+// ─────────────────────────────────────
+// TESLİM BİLDİRİM E-POSTASI
+// ─────────────────────────────────────
+interface DeliveryData {
+    orderId: string;
+    customerName: string;
+    customerEmail: string;
+}
+
+export async function sendDeliveryConfirmation(data: DeliveryData) {
+    const content = `
+        <!-- Status Badge -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center" style="padding-bottom: 28px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td style="background-color: #0f1a0f; border: 1px solid #152a15; border-radius: 24px; padding: 8px 24px;">
+                                <span style="font-family: 'Inter', Arial, sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: #22c55e; font-weight: 700;">✅ Teslim Edildi</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <h1 style="font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; color: #ffffff; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; text-align: center; margin: 0 0 8px; line-height: 1.2;">
+            Siparişin Teslim Edildi!
+        </h1>
+        <p style="font-family: 'Inter', Arial, sans-serif; color: #666666; font-size: 14px; text-align: center; margin: 0 0 36px; line-height: 1.7;">
+            Merhaba <strong style="color:#ffffff">${data.customerName}</strong>, siparişin başarıyla teslim edildi. Keyifle kullanmanı dileriz!
+        </p>
+
+        <!-- Order Number Card -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 32px;">
+            <tr>
+                <td style="background: linear-gradient(135deg, #0a1a0a 0%, #0f150f 100%); border: 1px solid #152a15; border-radius: 12px; padding: 24px; text-align: center;">
+                    <span style="font-family: 'Inter', Arial, sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 5px; color: #555555; font-weight: 600; display: block;">Sipariş Numarası</span>
+                    <span style="font-family: 'Inter', Arial, sans-serif; font-size: 26px; font-weight: 900; color: #22c55e; display: block; margin-top: 10px; letter-spacing: 3px;">${data.orderId.toUpperCase()}</span>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Satisfaction Message -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 32px;">
+            <tr>
+                <td style="background: linear-gradient(135deg, #0f0f0f, #111111); border: 1px solid #1f1f1f; border-radius: 12px; padding: 24px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="48" style="vertical-align: top;">
+                                <span style="display: inline-block; width: 40px; height: 40px; background: linear-gradient(135deg, #1a0f0f, #0f0a0a); border: 1px solid #2a1515; border-radius: 10px; text-align: center; line-height: 40px; font-size: 20px;">💬</span>
+                            </td>
+                            <td style="padding-left: 16px; vertical-align: top;">
+                                <span style="font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; display: block; margin-bottom: 6px;">Memnun Kaldın mı?</span>
+                                <span style="font-family: 'Inter', Arial, sans-serif; font-size: 12px; color: #666666; line-height: 1.7;">
+                                    Herhangi bir sorun varsa <strong style="color:#ef4444">14 gün</strong> içinde iade talebi oluşturabilirsin. Siparişlerim sayfasından kolayca işlem yapabilirsin.
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- CTA -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center" style="padding-top: 8px;">
+                    <a href="${BRAND_URL}/account?tab=orders" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #22c55e, #16a34a); color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 8px; font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 4px 15px rgba(34,197,94,0.3);">Siparişlerimi Görüntüle</a>
+                </td>
+            </tr>
+        </table>
+    `;
+
+    await sendEmail(
+        data.customerEmail,
+        `Siparişiniz Teslim Edildi! ✅ — ${data.orderId} | ${BRAND_NAME}`,
+        emailLayout(content, `${data.orderId} numaralı siparişiniz başarıyla teslim edildi.`, data.customerEmail),
+        `Merhaba ${data.customerName}, ${data.orderId} numaralı siparişiniz teslim edildi. Keyifle kullanmanızı dileriz! Detaylar: ${BRAND_URL}/account?tab=orders`,
+        true // transactional
     );
 }

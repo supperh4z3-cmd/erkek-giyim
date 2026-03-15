@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
-import { sendShippingNotification } from "@/lib/email";
+import { sendShippingNotification, sendDeliveryConfirmation } from "@/lib/email";
 
 interface OrderItemRow {
     product_id: string;
@@ -115,14 +115,23 @@ export async function PUT(
             .eq("id", existing.id)
             .single();
 
-        // Kargo takip numarası eklendiyse bildirim gönder
-        if (body.trackingNumber && updated?.customer_email) {
+        // Kargo takip numarası eklendiyse ve durum "delivered" değilse kargo bildirimi gönder
+        if (body.trackingNumber && body.status !== "delivered" && updated?.customer_email) {
             sendShippingNotification({
                 orderId: id,
                 customerName: updated.customer_name || "",
                 customerEmail: updated.customer_email,
                 trackingNumber: body.trackingNumber,
                 carrier: body.carrier || updated.carrier || "",
+            }).catch(() => {});
+        }
+
+        // Sipariş "delivered" yapıldığında teslim maili gönder
+        if (body.status === "delivered" && updated?.customer_email) {
+            sendDeliveryConfirmation({
+                orderId: id,
+                customerName: updated.customer_name || "",
+                customerEmail: updated.customer_email,
             }).catch(() => {});
         }
 

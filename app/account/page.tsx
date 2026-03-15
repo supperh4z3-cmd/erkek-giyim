@@ -95,6 +95,15 @@ export default function AccountPage() {
     const { customer, loading: authLoading, logout } = useAuth();
     const [activeTab, setActiveTab] = useState<TabKey>("profile");
 
+    // URL'den tab parametresini oku
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const tabParam = params.get("tab") as TabKey | null;
+        if (tabParam && TABS.some(t => t.key === tabParam)) {
+            setActiveTab(tabParam);
+        }
+    }, []);
+
     // Auth kontrolü
     useEffect(() => {
         if (!authLoading && !customer) {

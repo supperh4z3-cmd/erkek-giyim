@@ -217,7 +217,7 @@ export default function SeoManagementPage() {
                 </div>
             )}
 
-            {/* ═══ GOOGLE SİTELİNKS ═══ */}
+            {/* ═══ GOOGLE SITELINKS ═══ */}
             {activeTab === "sitelinks" && (
                 <div className="space-y-6">
                     {/* Info Box */}
