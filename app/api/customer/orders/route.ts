@@ -70,7 +70,9 @@ export async function GET(req: NextRequest) {
         status: o.status,
         paymentStatus: o.payment_status,
         total: o.total,
-        trackingNumber: o.tracking_number,
+        trackingNumber: o.tracking_number || "",
+        carrier: o.carrier || "",
+        address: o.address || "",
         returnStatus: returnsMap.get(o.id) || null,
         items: (itemsMap.get(o.id) || []).map((i: Record<string, string | number>) => ({
             id: i.id,

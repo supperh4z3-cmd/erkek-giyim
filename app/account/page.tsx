@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { User, MapPin, Heart, Package, LogOut, Plus, Trash2, Loader2, X, Check, RotateCcw } from "lucide-react";
+import { User, MapPin, Heart, Package, LogOut, Plus, Trash2, Loader2, X, Check, RotateCcw, ChevronDown, Truck, CreditCard, MapPinned } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 // ─── Types ─── //
@@ -47,6 +47,10 @@ interface Order {
     date: string;
     status: string;
     total: number;
+    trackingNumber?: string;
+    carrier?: string;
+    address?: string;
+    paymentStatus?: string;
     returnStatus?: string | null;
     items: OrderItem[];
 }
@@ -74,6 +78,16 @@ const statusColors: Record<string, string> = {
     shipped: "text-purple-400",
     delivered: "text-green-400",
     cancelled: "text-red-400",
+};
+const paymentLabels: Record<string, string> = {
+    paid: "Ödendi",
+    pending: "Bekliyor",
+    refunded: "İade Edildi",
+};
+const paymentColors: Record<string, string> = {
+    paid: "text-green-400 bg-green-500/10 border-green-500/20",
+    pending: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+    refunded: "text-orange-400 bg-orange-500/10 border-orange-500/20",
 };
 
 export default function AccountPage() {
@@ -373,6 +387,7 @@ function FavoritesTab() {
 // ─── ORDERS TAB ─── //
 function OrdersTab({ customerId }: { customerId: string }) {
     const [orders, setOrders] = useState<Order[]>([]);
+    const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [returnModal, setReturnModal] = useState<Order | null>(null);
     const [returnReason, setReturnReason] = useState("");
@@ -468,11 +483,16 @@ function OrdersTab({ customerId }: { customerId: string }) {
                     <p className="text-white/30 uppercase tracking-widest text-sm font-bold">Henüz sipariş vermediniz.</p>
                 </div>
             ) : (
-                <div className="space-y-6">
-                    {orders.map((order) => (
-                        <div key={order.id} className="bg-[#0a0a0a] border border-[#222] hover:border-white/20 transition-colors">
+                <div className="space-y-4">
+                    {orders.map((order) => {
+                        const isExpanded = expandedOrder === order.id;
+                        return (
+                        <div key={order.id} className="bg-[#0a0a0a] border border-[#222] hover:border-white/20 transition-colors rounded-lg overflow-hidden">
                             {/* Sipariş Başlığı */}
-                            <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#222]">
+                            <div
+                                onClick={() => setExpandedOrder(isExpanded ? null : order.id)}
+                                className="p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#222] cursor-pointer select-none hover:bg-white/[0.02] transition-colors">
+
                                 <div className="flex-1">
                                     <div className="flex items-center gap-3 mb-2 flex-wrap">
                                         <h3 className="font-display text-lg font-bold uppercase">#{order.id}</h3>
@@ -490,44 +510,107 @@ function OrdersTab({ customerId }: { customerId: string }) {
                                         {new Date(order.date).toLocaleDateString("tr-TR")} · {order.items.length} ürün
                                     </p>
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-3">
                                     <p className="text-xl font-display font-bold">₺{Number(order.total).toLocaleString("tr-TR", { minimumFractionDigits: 2 })}</p>
-                                    {order.status === "delivered" && !order.returnStatus && (
-                                        <button
-                                            onClick={() => openReturnModal(order)}
-                                            className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 text-white/70 hover:text-white hover:border-danger hover:bg-danger/10 transition-all text-xs uppercase tracking-widest font-bold"
-                                        >
-                                            <RotateCcw className="w-3.5 h-3.5" />
-                                            İade Talebi
-                                        </button>
-                                    )}
+                                    <ChevronDown className={`w-5 h-5 text-white/30 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
                                 </div>
                             </div>
 
-                            {/* Sipariş Kalemleri */}
-                            <div className="p-4 md:px-8 md:py-4 space-y-3">
-                                {order.items.map((item, idx) => (
-                                    <div key={idx} className="flex items-center gap-4 py-2">
-                                        {item.image && (
-                                            <div className="w-12 h-14 relative bg-[#111] flex-shrink-0 overflow-hidden">
-                                                <Image src={item.image as string} alt={item.name} fill className="object-cover" />
+                            {/* Açılır Detay Bölümü */}
+                            <AnimatePresence>
+                                {isExpanded && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className="overflow-hidden"
+                                    >
+                                        {/* Detay Kartları */}
+                                        <div className="p-5 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-3 bg-[#060606] border-b border-[#222]">
+                                            {/* Kargo Bilgisi */}
+                                            <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <Truck className="w-4 h-4 text-purple-400" />
+                                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Kargo</span>
+                                                </div>
+                                                {order.trackingNumber ? (
+                                                    <>
+                                                        {order.carrier && (
+                                                            <p className="text-sm font-bold text-white mb-1">{order.carrier}</p>
+                                                        )}
+                                                        <p className="text-sm font-mono text-purple-400 tracking-wider">{order.trackingNumber}</p>
+                                                    </>
+                                                ) : (
+                                                    <p className="text-sm text-white/20">Henüz kargoya verilmedi</p>
+                                                )}
                                             </div>
-                                        )}
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-sm font-bold text-white/80 truncate">{item.name}</p>
-                                            <p className="text-xs text-white/40">
-                                                {item.size && `Beden: ${item.size}`}
-                                                {item.size && item.color && " · "}
-                                                {item.color && `Renk: ${item.color}`}
-                                                {" · "}Adet: {item.quantity}
-                                            </p>
+
+                                            {/* Ödeme Durumu */}
+                                            <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <CreditCard className="w-4 h-4 text-green-400" />
+                                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Ödeme</span>
+                                                </div>
+                                                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest border ${paymentColors[order.paymentStatus || ""] || "text-white/50 bg-white/5 border-white/10"}`}>
+                                                    {paymentLabels[order.paymentStatus || ""] || order.paymentStatus || "Bilinmiyor"}
+                                                </span>
+                                            </div>
+
+                                            {/* Teslimat Adresi */}
+                                            <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <MapPinned className="w-4 h-4 text-blue-400" />
+                                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Adres</span>
+                                                </div>
+                                                <p className="text-sm text-white/60 leading-relaxed line-clamp-3">
+                                                    {order.address || "Adres bilgisi yok"}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <p className="text-sm font-bold text-white/60">₺{Number(item.price).toLocaleString("tr-TR", { minimumFractionDigits: 2 })}</p>
-                                    </div>
-                                ))}
-                            </div>
+
+                                        {/* Sipariş Kalemleri */}
+                                        <div className="p-4 md:px-6 md:py-4 space-y-2">
+                                            {order.items.map((item, idx) => (
+                                                <div key={idx} className="flex items-center gap-4 py-2.5 border-b border-[#161616] last:border-0">
+                                                    {item.image && (
+                                                        <div className="w-12 h-14 relative bg-[#111] flex-shrink-0 overflow-hidden rounded">
+                                                            <Image src={item.image as string} alt={item.name} fill className="object-cover" />
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="text-sm font-bold text-white/80 truncate">{item.name}</p>
+                                                        <p className="text-xs text-white/40">
+                                                            {item.size && `Beden: ${item.size}`}
+                                                            {item.size && item.color && " · "}
+                                                            {item.color && `Renk: ${item.color}`}
+                                                            {" · "}Adet: {item.quantity}
+                                                        </p>
+                                                    </div>
+                                                    <p className="text-sm font-bold text-white/60">₺{Number(item.price).toLocaleString("tr-TR", { minimumFractionDigits: 2 })}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Alt Bar: Toplam + İade */}
+                                        <div className="p-4 md:px-6 bg-[#060606] border-t border-[#222] flex items-center justify-between">
+                                            <p className="text-white/40 text-xs uppercase tracking-widest font-bold">Toplam: <span className="text-white text-base ml-1">₺{Number(order.total).toLocaleString("tr-TR", { minimumFractionDigits: 2 })}</span></p>
+                                            {order.status === "delivered" && !order.returnStatus && (
+                                                <button
+                                                    onClick={(e) => { e.stopPropagation(); openReturnModal(order); }}
+                                                    className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 text-white/70 hover:text-white hover:border-danger hover:bg-danger/10 transition-all text-xs uppercase tracking-widest font-bold rounded"
+                                                >
+                                                    <RotateCcw className="w-3.5 h-3.5" />
+                                                    İade Talebi
+                                                </button>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
 
