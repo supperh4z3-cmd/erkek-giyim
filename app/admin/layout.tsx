@@ -299,7 +299,7 @@ export default function AdminLayout({
                 />
 
                 {/* Topbar */}
-                <header className="h-14 lg:h-20 border-b border-white/10 flex items-center justify-between px-4 lg:px-8 bg-[#0a0a0a]/80 backdrop-blur-md z-10 shrink-0">
+                <header className="h-14 lg:h-20 border-b border-white/10 flex items-center justify-between px-4 lg:px-8 bg-[#0a0a0a]/80 backdrop-blur-md z-20 shrink-0 relative">
                     <div className="flex items-center gap-3">
                         {/* Mobile Hamburger */}
                         <button
