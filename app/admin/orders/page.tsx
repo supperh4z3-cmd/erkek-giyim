@@ -27,6 +27,7 @@ interface Order {
     paymentStatus: string;
     total: number;
     trackingNumber: string;
+    carrier: string;
     items: OrderItem[];
 }
 
@@ -175,16 +176,16 @@ export default function OrdersPage() {
         }
     };
 
-    const handleTrackingUpdate = async (orderId: string, trackingNumber: string) => {
+    const handleTrackingUpdate = async (orderId: string, trackingNumber: string, carrier: string) => {
         try {
             await fetch(`/api/orders/${orderId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ trackingNumber }),
+                body: JSON.stringify({ trackingNumber, carrier: carrier || undefined }),
             });
-            setOrders(orders.map(o => o.id === orderId ? { ...o, trackingNumber } : o));
+            setOrders(orders.map(o => o.id === orderId ? { ...o, trackingNumber, carrier } : o));
             if (selectedOrder && selectedOrder.id === orderId) {
-                setSelectedOrder({ ...selectedOrder, trackingNumber });
+                setSelectedOrder({ ...selectedOrder, trackingNumber, carrier });
             }
         } catch (err) {
             console.error("Takip no güncellenemedi:", err);
@@ -627,24 +628,42 @@ export default function OrdersPage() {
                                 </div>
                             </div>
 
-                            {/* Kargo Takip No */}
-                            <div className="bg-[#0a0a0a] border border-white/5 rounded-xl p-5 space-y-3">
-                                <label className="block text-[10px] uppercase tracking-widest text-white/40 font-mono">Kargo Takip Numarası</label>
-                                <div className="flex gap-3">
+                            {/* Kargo Takip No & Şirket */}
+                            <div className="bg-[#0a0a0a] border border-white/5 rounded-xl p-5 space-y-4">
+                                <div className="space-y-2">
+                                    <label className="block text-[10px] uppercase tracking-widest text-white/40 font-mono">Kargo Takip Numarası</label>
                                     <input
                                         type="text"
                                         value={selectedOrder.trackingNumber || ""}
                                         onChange={(e) => setSelectedOrder({...selectedOrder, trackingNumber: e.target.value})}
                                         placeholder="Örn: YK-1234567890"
-                                        className="flex-1 bg-[#111111] border border-white/10 rounded-lg px-4 py-2 text-white font-mono text-sm focus:outline-none focus:border-purple-500"
+                                        className="w-full bg-[#111111] border border-white/10 rounded-lg px-4 py-2 text-white font-mono text-sm focus:outline-none focus:border-purple-500"
                                     />
-                                    <button
-                                        onClick={() => handleTrackingUpdate(selectedOrder.id, selectedOrder.trackingNumber)}
-                                        className="px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-purple-500/30 transition-colors"
-                                    >
-                                        Kaydet
-                                    </button>
                                 </div>
+                                <div className="space-y-2">
+                                    <label className="block text-[10px] uppercase tracking-widest text-white/40 font-mono">Kargo Şirketi</label>
+                                    <select
+                                        value={selectedOrder.carrier || ""}
+                                        onChange={(e) => setSelectedOrder({...selectedOrder, carrier: e.target.value})}
+                                        className="w-full bg-[#111111] border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-purple-500 appearance-none cursor-pointer"
+                                    >
+                                        <option value="" style={{background:'#111'}}>Seçiniz</option>
+                                        <option value="Yurtiçi Kargo" style={{background:'#111'}}>Yurtiçi Kargo</option>
+                                        <option value="Aras Kargo" style={{background:'#111'}}>Aras Kargo</option>
+                                        <option value="MNG Kargo" style={{background:'#111'}}>MNG Kargo</option>
+                                        <option value="PTT Kargo" style={{background:'#111'}}>PTT Kargo</option>
+                                        <option value="Sürat Kargo" style={{background:'#111'}}>Sürat Kargo</option>
+                                        <option value="Trendyol Express" style={{background:'#111'}}>Trendyol Express</option>
+                                        <option value="HepsiJet" style={{background:'#111'}}>HepsiJet</option>
+                                        <option value="Diğer" style={{background:'#111'}}>Diğer</option>
+                                    </select>
+                                </div>
+                                <button
+                                    onClick={() => handleTrackingUpdate(selectedOrder.id, selectedOrder.trackingNumber, selectedOrder.carrier)}
+                                    className="w-full px-4 py-2.5 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-purple-500/30 transition-colors"
+                                >
+                                    Kargo Bilgilerini Kaydet
+                                </button>
                             </div>
 
                             {/* Customer Info */}
