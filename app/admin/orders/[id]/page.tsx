@@ -52,6 +52,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
     // Editable fields
     const [status, setStatus] = useState("");
     const [trackingNumber, setTrackingNumber] = useState("");
+    const [carrier, setCarrier] = useState("");
 
     useEffect(() => {
         fetch(`/api/orders/${id}`)
@@ -63,6 +64,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                     setOrder(data);
                     setStatus(data.status);
                     setTrackingNumber(data.trackingNumber || "");
+                    setCarrier(data.carrier || "");
                 }
             })
             .catch(() => setOrder(null))
@@ -79,6 +81,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                 body: JSON.stringify({
                     status,
                     trackingNumber: trackingNumber || undefined,
+                    carrier: carrier || undefined,
                 }),
             });
             const updated = await res.json();
@@ -384,6 +387,28 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                                     placeholder="Ör: 1234567890"
                                     className="w-full bg-white/5 border border-white/10 rounded-md px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-danger font-mono"
                                 />
+                            </div>
+
+                            {/* Kargo Şirketi */}
+                            <div>
+                                <label className="block text-xs font-bold uppercase tracking-widest text-white/50 mb-2">
+                                    Kargo Şirketi
+                                </label>
+                                <select
+                                    value={carrier}
+                                    onChange={(e) => setCarrier(e.target.value)}
+                                    className="w-full bg-white/5 border border-white/10 rounded-md px-4 py-3 text-white focus:outline-none focus:border-danger appearance-none cursor-pointer"
+                                >
+                                    <option value="" style={{background:'#0a0a0a'}}>Seçiniz</option>
+                                    <option value="Yurtiçi Kargo" style={{background:'#0a0a0a'}}>Yurtiçi Kargo</option>
+                                    <option value="Aras Kargo" style={{background:'#0a0a0a'}}>Aras Kargo</option>
+                                    <option value="MNG Kargo" style={{background:'#0a0a0a'}}>MNG Kargo</option>
+                                    <option value="PTT Kargo" style={{background:'#0a0a0a'}}>PTT Kargo</option>
+                                    <option value="Sürat Kargo" style={{background:'#0a0a0a'}}>Sürat Kargo</option>
+                                    <option value="Trendyol Express" style={{background:'#0a0a0a'}}>Trendyol Express</option>
+                                    <option value="HepsiJet" style={{background:'#0a0a0a'}}>HepsiJet</option>
+                                    <option value="Diğer" style={{background:'#0a0a0a'}}>Diğer</option>
+                                </select>
                             </div>
                         </div>
                     </div>

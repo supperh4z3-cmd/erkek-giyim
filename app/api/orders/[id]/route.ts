@@ -24,6 +24,7 @@ interface OrderRow {
     payment_status: string;
     total: number;
     tracking_number?: string;
+    carrier?: string;
     note?: string;
     order_items?: OrderItemRow[];
 }
@@ -40,6 +41,7 @@ function formatOrder(o: OrderRow) {
         paymentStatus: o.payment_status,
         total: Number(o.total),
         trackingNumber: o.tracking_number || "",
+        carrier: o.carrier || "",
         note: o.note || "",
         items: (o.order_items || []).map((item: OrderItemRow) => ({
             productId: item.product_id,
@@ -98,6 +100,7 @@ export async function PUT(
         if (body.status !== undefined) updateData.status = body.status;
         if (body.paymentStatus !== undefined) updateData.payment_status = body.paymentStatus;
         if (body.trackingNumber !== undefined) updateData.tracking_number = body.trackingNumber;
+        if (body.carrier !== undefined) updateData.carrier = body.carrier;
         if (body.address !== undefined) updateData.address = body.address;
 
         await supabaseAdmin
@@ -119,6 +122,7 @@ export async function PUT(
                 customerName: updated.customer_name || "",
                 customerEmail: updated.customer_email,
                 trackingNumber: body.trackingNumber,
+                carrier: body.carrier || updated.carrier || "",
             }).catch(() => {});
         }
 

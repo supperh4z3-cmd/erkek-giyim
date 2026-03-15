@@ -234,3 +234,17 @@ CREATE POLICY "Public insert customers" ON customers FOR INSERT WITH CHECK (true
 CREATE POLICY "Public read customers" ON customers FOR SELECT USING (true);
 CREATE POLICY "Public read orders" ON orders FOR SELECT USING (true);
 CREATE POLICY "Public read order_items" ON order_items FOR SELECT USING (true);
+
+-- 12. E-POSTA UNSUBSCRIBE
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS carrier TEXT;
+
+CREATE TABLE IF NOT EXISTS email_unsubscribes (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL,
+  token TEXT NOT NULL UNIQUE,
+  unsubscribed_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_email_unsubscribes_email ON email_unsubscribes(email);
+ALTER TABLE email_unsubscribes ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public manage email_unsubscribes" ON email_unsubscribes FOR ALL USING (true) WITH CHECK (true);
