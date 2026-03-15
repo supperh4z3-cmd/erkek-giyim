@@ -112,8 +112,8 @@ export default function ProductDetailPage() {
 
     if (loading || !product) {
         return (
-            <main className="min-h-screen bg-[#050505] flex items-center justify-center">
-                <Loader2 className="w-10 h-10 text-white/30 animate-spin" />
+            <main className="min-h-screen bg-[#fdfdfd] flex items-center justify-center">
+                <Loader2 className="w-10 h-10 text-gray-300 animate-spin" />
             </main>
         );
     }
@@ -135,26 +135,26 @@ export default function ProductDetailPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#050505] text-white pt-24 pb-32 overflow-x-hidden">
+        <main className="min-h-screen bg-[#fdfdfd] text-gray-900 pt-24 pb-32 overflow-x-hidden">
             <div className="container mx-auto px-0 lg:px-8 max-w-[1600px]">
 
                 {/* Technical Breadcrumbs */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-white/40 mb-8 px-4 lg:px-0"
+                    className="flex items-center gap-2 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-gray-400 mb-8 px-4 lg:px-0"
                 >
-                    <Link href="/" className="hover:text-white transition-colors">SYS_HOME</Link>
+                    <Link href="/" className="hover:text-gray-900 transition-colors">SYS_HOME</Link>
                     <span className="text-danger">/</span>
-                    <Link href="/collections" className="hover:text-white transition-colors">ARCHIVE</Link>
+                    <Link href="/collections" className="hover:text-gray-900 transition-colors">ARCHIVE</Link>
                     {product.category && (
                         <>
                             <span className="text-danger">/</span>
-                            <Link href={`/collections/${product.category.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`} className="hover:text-white transition-colors">{product.category.toUpperCase().replace(/ /g, "_")}</Link>
+                            <Link href={`/collections/${product.category.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`} className="hover:text-gray-900 transition-colors">{product.category.toUpperCase().replace(/ /g, "_")}</Link>
                         </>
                     )}
                     <span className="text-danger">/</span>
-                    <span className="text-white border-b border-white/50 pb-0.5">{product.name.toUpperCase().replace(/ /g, "_")}</span>
+                    <span className="text-gray-900 border-b border-gray-400 pb-0.5">{product.name.toUpperCase().replace(/ /g, "_")}</span>
                 </motion.div>
 
                 <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
@@ -164,7 +164,7 @@ export default function ProductDetailPage() {
                         initial="hidden"
                         animate="show"
                         variants={staggerContainer}
-                        className="w-full lg:w-3/5 flex flex-col md:grid md:grid-cols-2 gap-0 bg-[#050505]"
+                        className="w-full lg:w-3/5 flex flex-col md:grid md:grid-cols-2 gap-0 bg-[#f5f5f5]"
                     >
                         {/* 1. Büyük Ana Görsel (Üst Satır Tamamini Kaplar) */}
                         <motion.div
@@ -175,7 +175,7 @@ export default function ProductDetailPage() {
                             {/* Neon Glow Efekti (ARKA PLAN - Görselin arkasında) */}
                             <div className="absolute -inset-12 bg-gradient-to-br from-red-600/50 via-transparent to-blue-600/50 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-700 z-0 pointer-events-none" />
 
-                            <div className="absolute inset-0 z-10 overflow-hidden bg-[#050505]">
+                            <div className="absolute inset-0 z-10 overflow-hidden bg-[#f5f5f5]">
                                 <Image
                                     src={product.images[0]}
                                     alt={product.name}
@@ -202,7 +202,7 @@ export default function ProductDetailPage() {
                         {product.images.length > 1 && (
                             <motion.div variants={fadeInUp} onClick={() => openLightbox(1)} className="md:col-span-1 relative aspect-square md:aspect-[3/4] group cursor-zoom-in">
                                 <div className="absolute -inset-8 bg-blue-600/30 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none" />
-                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#050505]">
+                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#f5f5f5]">
                                     <Image
                                         src={product.images[1]}
                                         alt={`${product.name} detail`}
@@ -217,7 +217,7 @@ export default function ProductDetailPage() {
                         {product.images.length > 2 && (
                             <motion.div variants={fadeInUp} onClick={() => openLightbox(2)} className="md:col-span-1 relative aspect-square md:aspect-[3/4] group cursor-zoom-in">
                                 <div className="absolute -inset-8 bg-red-600/30 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none" />
-                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#050505]">
+                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#f5f5f5]">
                                     <Image
                                         src={product.images[2]}
                                         alt={`${product.name} back`}
@@ -230,9 +230,9 @@ export default function ProductDetailPage() {
 
                         {/* 4. Alt Dev Görsel (Lifestyle) */}
                         {product.images.length > 3 && (
-                            <motion.div variants={fadeInUp} onClick={() => openLightbox(3)} className="md:col-span-2 relative aspect-[4/3] md:aspect-[16/9] group mt-0 border border-white/10 border-t-0 cursor-zoom-in">
+                            <motion.div variants={fadeInUp} onClick={() => openLightbox(3)} className="md:col-span-2 relative aspect-[4/3] md:aspect-[16/9] group mt-0 border border-gray-200 border-t-0 cursor-zoom-in">
                                 <div className="absolute -inset-12 bg-gradient-to-t from-blue-600/40 via-transparent to-red-600/40 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-700 z-0 pointer-events-none" />
-                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#050505]">
+                                <div className="absolute inset-0 z-10 overflow-hidden bg-[#f5f5f5]">
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 z-20 pointer-events-none" />
                                     <Image
                                         src={product.images[3]}
@@ -254,7 +254,7 @@ export default function ProductDetailPage() {
                             className="sticky top-32 lg:pr-8"
                         >
                             {/* Kategori Mühürü */}
-                            <p className="text-xs uppercase tracking-[0.3em] font-bold text-white/50 mb-4">{product.category}</p>
+                            <p className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-4">{product.category}</p>
 
                             {/* Ürün Adı */}
                             <h1 className="text-3xl md:text-5xl lg:text-6xl font-display uppercase tracking-tighter leading-[0.9] text-balance mb-6">
@@ -267,31 +267,31 @@ export default function ProductDetailPage() {
                             <div className="flex items-baseline gap-3">
                                     <p className="text-3xl font-medium tracking-tight">{product.priceFormatted}</p>
                                     {product.oldPriceFormatted && (
-                                        <p className="text-lg text-white/40 line-through">{product.oldPriceFormatted}</p>
+                                        <p className="text-lg text-gray-400 line-through">{product.oldPriceFormatted}</p>
                                     )}
                                 </div>
 
                             {/* Ürün Açıklaması */}
-                            <div className="mb-10 text-white/70 text-sm md:text-base leading-relaxed text-pretty">
+                            <div className="mb-10 text-gray-500 text-sm md:text-base leading-relaxed text-pretty">
                                 <p>{product.description}</p>
                             </div>
 
                             {/* Renk Seçimi */}
-                            <div className="mb-8 border-b border-white/10 pb-8">
+                            <div className="mb-8 border-b border-gray-200 pb-8">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="uppercase font-bold tracking-widest text-sm">Renk</h3>
-                                    <span className="text-xs text-white/60 uppercase">{selectedColor?.name}</span>
+                                    <span className="text-xs text-gray-500 uppercase">{selectedColor?.name}</span>
                                 </div>
                                 <div className="flex gap-4">
                                     {product.colors.map((color) => (
                                         <button
                                             key={color.name}
                                             onClick={() => setSelectedColor(color)}
-                                            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${selectedColor?.name === color.name ? 'ring-2 ring-white ring-offset-4 ring-offset-[#050505]' : 'hover:scale-110 border border-white/20'}`}
+                                            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${selectedColor?.name === color.name ? 'ring-2 ring-gray-900 ring-offset-4 ring-offset-[#fdfdfd]' : 'hover:scale-110 border border-gray-300'}`}
                                             aria-label={`Select color ${color.name}`}
                                         >
                                             <span
-                                                className="w-full h-full rounded-full block border border-white/10 shadow-inner"
+                                                className="w-full h-full rounded-full block border border-gray-200 shadow-inner"
                                                 style={{ backgroundColor: color.hex }}
                                             />
                                         </button>
@@ -303,7 +303,7 @@ export default function ProductDetailPage() {
                             <div className="mb-10">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="uppercase font-bold tracking-widest text-sm">Beden</h3>
-                                    <Link href="/size-guide" className="text-xs uppercase text-white/50 hover:text-white underline underline-offset-4 flex items-center gap-1 transition-colors">
+                                    <Link href="/size-guide" className="text-xs uppercase text-gray-400 hover:text-gray-900 underline underline-offset-4 flex items-center gap-1 transition-colors">
                                         <Ruler className="w-3 h-3" /> Beden Rehberi
                                     </Link>
                                 </div>
@@ -314,16 +314,16 @@ export default function ProductDetailPage() {
                                             onClick={() => setSelectedSize(sizeObj.size)}
                                             disabled={sizeObj.stock === 0}
                                             className={`py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 border relative ${selectedSize === sizeObj.size
-                                                ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.15)]'
+                                                ? 'bg-gray-900 text-white border-gray-900 shadow-lg'
                                                 : sizeObj.stock === 0
-                                                    ? 'bg-transparent text-white/20 border-white/10 cursor-not-allowed'
-                                                    : 'bg-transparent text-white border-white/20 hover:border-white/60'
+                                                    ? 'bg-transparent text-gray-300 border-gray-200 cursor-not-allowed'
+                                                    : 'bg-transparent text-gray-900 border-gray-300 hover:border-gray-900'
                                                 }`}
                                         >
                                             <span className="relative z-10">{sizeObj.size}</span>
                                             {sizeObj.stock === 0 && (
                                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-                                                    <div className="w-full h-[1px] bg-white rotate-45 transform origin-center absolute" />
+                                                    <div className="w-full h-[1px] bg-gray-400 rotate-45 transform origin-center absolute" />
                                                 </div>
                                             )}
                                         </button>
@@ -336,9 +336,9 @@ export default function ProductDetailPage() {
                                 {/* Alt Neon Parlaması (Hover State) */}
                                 <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-blue-600 rounded-none blur opacity-0 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
 
-                                <button onClick={handleAddToCart} className="relative w-full bg-white text-black py-6 uppercase font-bold tracking-[0.2em] text-sm flex items-center justify-center gap-3 overflow-hidden hover:bg-white/90 transition-colors">
+                                <button onClick={handleAddToCart} className="relative w-full bg-gray-900 text-white py-6 uppercase font-bold tracking-[0.2em] text-sm flex items-center justify-center gap-3 overflow-hidden hover:bg-gray-800 transition-colors">
                                     {/* Hover'da kayan çizgi efekti */}
-                                    <span className="absolute inset-0 w-full h-full bg-black/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                                    <span className="absolute inset-0 w-full h-full bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                                     <ShoppingBag className="w-5 h-5 relative z-10" />
                                     <span className="relative z-10">Sepete Ekle</span>
                                 </button>
@@ -349,8 +349,8 @@ export default function ProductDetailPage() {
                                 <h3 className="uppercase font-bold tracking-widest text-sm mb-4">Detaylar & Kalıp</h3>
                                 <ul className="space-y-2">
                                     {(product.features || []).map((feature: string, idx: number) => (
-                                        <li key={idx} className="flex items-start text-sm text-white/70 border-b border-white/5 pb-2">
-                                            <span className="mr-3 text-white/40 font-mono text-xs mt-0.5">0{idx + 1}</span>
+                                        <li key={idx} className="flex items-start text-sm text-gray-500 border-b border-gray-100 pb-2">
+                                            <span className="mr-3 text-gray-400 font-mono text-xs mt-0.5">0{idx + 1}</span>
                                             {feature}
                                         </li>
                                     ))}

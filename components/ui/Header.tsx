@@ -83,7 +83,7 @@ export default function Header() {
     }, [pathname]);
 
     if (pathname?.startsWith("/admin")) return null;
-    const darkPages = ["/collections", "/discover", "/campaigns", "/about", "/shipping", "/returns", "/faq", "/contact", "/size-guide", "/login", "/register", "/account", "/terms", "/privacy", "/new", "/checkout", "/product"];
+    const darkPages = ["/collections", "/discover", "/campaigns", "/about", "/shipping", "/returns", "/faq", "/contact", "/size-guide", "/login", "/register", "/account", "/terms", "/privacy", "/new", "/checkout"];
 
     const isLightThemePage = !forceDark && pathname !== "/" && !darkPages.some(p => pathname.startsWith(p));
     const isDarkText = isLightThemePage && !activeMenu && !mobileMenuOpen;
