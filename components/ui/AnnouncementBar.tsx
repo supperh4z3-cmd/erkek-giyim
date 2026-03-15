@@ -69,7 +69,7 @@ export default function AnnouncementBar() {
     if (!current) return null;
 
     const content = (
-        <div className="w-full bg-black text-white text-[10px] md:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase z-50 relative overflow-hidden">
+        <div className="w-full bg-black text-white text-[10px] md:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase z-[60] relative overflow-hidden">
             <div
                 className="transition-all duration-400 ease-in-out"
                 style={{
