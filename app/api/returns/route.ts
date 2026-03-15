@@ -134,32 +134,72 @@ export async function PATCH(request: NextRequest) {
         // Eğer onaylandıysa → stok geri ekle
         if (status === "approved" && returnReq.return_items) {
             for (const item of returnReq.return_items) {
-                if (item.size && item.order_item_id) {
-                    // order_items'dan product_id'yi al
-                    const { data: orderItem } = await supabaseAdmin
-                        .from("order_items")
-                        .select("product_id")
-                        .eq("id", item.order_item_id)
-                        .single();
+                try {
+                    let productId: string | null = null;
 
-                    if (orderItem?.product_id) {
-                        // Mevcut stoğu oku
+                    // 1) order_item_id varsa ondan product_id al
+                    if (item.order_item_id) {
+                        const { data: orderItem } = await supabaseAdmin
+                            .from("order_items")
+                            .select("product_id")
+                            .eq("id", item.order_item_id)
+                            .single();
+                        productId = orderItem?.product_id || null;
+                    }
+
+                    // 2) Hala bulunamadıysa, ürün adından ara
+                    if (!productId && item.product_name) {
+                        const { data: productByName } = await supabaseAdmin
+                            .from("products")
+                            .select("id")
+                            .eq("name", item.product_name)
+                            .single();
+                        productId = productByName?.id || null;
+                    }
+
+                    if (!productId) {
+                        console.warn(`[İade Stok] Ürün bulunamadı: ${item.product_name}`);
+                        continue;
+                    }
+
+                    // Stok güncelleme: beden varsa product_sizes, yoksa products tablosu
+                    const itemSize = item.size?.trim();
+                    if (itemSize) {
+                        // Bedene göre stok artır
                         const { data: sizeRow } = await supabaseAdmin
                             .from("product_sizes")
                             .select("stock")
-                            .eq("product_id", orderItem.product_id)
-                            .eq("size", item.size)
+                            .eq("product_id", productId)
+                            .eq("size", itemSize)
                             .single();
 
                         if (sizeRow) {
-                            // Stoğu artır
                             await supabaseAdmin
                                 .from("product_sizes")
                                 .update({ stock: (sizeRow.stock || 0) + item.quantity })
-                                .eq("product_id", orderItem.product_id)
-                                .eq("size", item.size);
+                                .eq("product_id", productId)
+                                .eq("size", itemSize);
+                        } else {
+                            // Beden kaydı yoksa oluştur
+                            await supabaseAdmin
+                                .from("product_sizes")
+                                .insert({ product_id: productId, size: itemSize, stock: item.quantity });
                         }
                     }
+
+                    // Stok geçmişine kayıt ekle
+                    try {
+                        await supabaseAdmin.from("stock_history").insert({
+                            product_id: productId,
+                            size: itemSize || "N/A",
+                            change: item.quantity,
+                            reason: `İade onayı — İade #${returnId}`,
+                        });
+                    } catch { /* stok geçmişi opsiyonel */ }
+
+                    console.log(`[İade Stok] ✅ ${item.product_name} (${itemSize || "bedensiz"}) +${item.quantity} stok eklendi`);
+                } catch (stockErr) {
+                    console.error(`[İade Stok] Hata: ${item.product_name}`, stockErr);
                 }
             }
         }
