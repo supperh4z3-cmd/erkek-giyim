@@ -146,7 +146,7 @@ export default function BestSellersMarquee() {
             >
                 <div className="container mx-auto px-4 lg:px-8 mb-12 flex justify-between items-end">
                     <div>
-                        <h2 className="text-white text-xs md:text-sm uppercase tracking-[0.3em] mb-2 font-medium text-danger">Trending Now</h2>
+                        <h2 className="text-white text-xs md:text-sm uppercase tracking-[0.3em] mb-2 font-medium text-danger">TRENDING NOW</h2>
                         <h3 className="text-3xl md:text-5xl font-display text-white uppercase tracking-tighter mix-blend-difference">Çok Satanlar</h3>
                     </div>
                 </div>

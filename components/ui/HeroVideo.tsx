@@ -102,7 +102,7 @@ export default function HeroVideo() {
 
                 {/* Scroll Indicator */}
                 <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70 animate-pulse">
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Discover</span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">DISCOVER</span>
                     <div className="w-[1px] h-12 bg-white/50 relative overflow-hidden">
                         <motion.div
                             animate={{ y: ["-100%", "200%"] }}

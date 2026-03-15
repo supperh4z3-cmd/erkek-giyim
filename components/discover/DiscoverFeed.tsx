@@ -284,7 +284,7 @@ export default function DiscoverFeed() {
                         <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter text-white mb-2 animate-police-strobe text-center">
                             EDİTÖRÜN SEÇİMİ
                         </h2>
-                        <p className="text-center text-white/50 text-sm uppercase tracking-[0.2em] mb-12">The Final Look</p>
+                        <p className="text-center text-white/50 text-sm uppercase tracking-[0.2em] mb-12">THE FINAL LOOK</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-[1400px] mx-auto w-full pb-20 grid-flow-row-dense">

@@ -21,14 +21,14 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
         setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
     };
 
-    const categories = ["T-Shirts", "Bottoms", "Outwear", "Knitwear", "Denim Studio"];
+    const categories = ["T-SHIRTS", "BOTTOMS", "OUTWEAR", "KNITWEAR", "DENIM STUDIO"];
     const sizes = ["S", "M", "L", "XL", "XXL"];
     const colors = [
-        { name: "Vintage Ash", hex: "#8c8c8c" },
-        { name: "Washed Black", hex: "#1a1a1a" },
-        { name: "Crimson Red", hex: "#8b0000" },
-        { name: "Navy Blue", hex: "#000080" },
-        { name: "Earth Brown", hex: "#5c4033" },
+        { name: "VINTAGE ASH", hex: "#8c8c8c" },
+        { name: "WASHED BLACK", hex: "#1a1a1a" },
+        { name: "CRIMSON RED", hex: "#8b0000" },
+        { name: "NAVY BLUE", hex: "#000080" },
+        { name: "EARTH BROWN", hex: "#5c4033" },
     ];
 
     return (
@@ -56,7 +56,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                     <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#1a1a1a]/10">
                         <div className="flex items-center gap-2 text-primary-900">
                             <SlidersHorizontal className="w-5 h-5" />
-                            <span className="font-display uppercase tracking-widest text-lg">Filters</span>
+                            <span className="font-display uppercase tracking-widest text-lg">FILTERS</span>
                         </div>
                         <button onClick={onClose} className="lg:hidden text-primary-900/50 hover:text-primary-900 transition-colors">
                             <X className="w-6 h-6" />
@@ -71,7 +71,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                                 onClick={() => toggleSection('category')}
                                 className="flex items-center justify-between w-full text-left"
                             >
-                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">Category</span>
+                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">CATEGORY</span>
                                 {openSections['category'] ? <ChevronUp className="w-4 h-4 text-primary-900/50" /> : <ChevronDown className="w-4 h-4 text-primary-900/50" />}
                             </button>
                             <AnimatePresence>
@@ -104,7 +104,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                                 onClick={() => toggleSection('size')}
                                 className="flex items-center justify-between w-full text-left"
                             >
-                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">Size</span>
+                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">SIZE</span>
                                 {openSections['size'] ? <ChevronUp className="w-4 h-4 text-primary-900/50" /> : <ChevronDown className="w-4 h-4 text-primary-900/50" />}
                             </button>
                             <AnimatePresence>
@@ -136,7 +136,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                                 onClick={() => toggleSection('color')}
                                 className="flex items-center justify-between w-full text-left"
                             >
-                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">Color</span>
+                                <span className="font-bold text-xs uppercase tracking-widest text-primary-900/50">COLOR</span>
                                 {openSections['color'] ? <ChevronUp className="w-4 h-4 text-primary-900/50" /> : <ChevronDown className="w-4 h-4 text-primary-900/50" />}
                             </button>
                             <AnimatePresence>
@@ -170,7 +170,7 @@ export default function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                     {/* Apply Filters (Mobile Only) */}
                     <div className="mt-8 lg:hidden">
                         <button onClick={onClose} className="w-full bg-primary-900 text-white font-bold uppercase tracking-widest py-4 text-xs hover:bg-black transition-colors">
-                            Apply Filters
+                            APPLY FILTERS
                         </button>
                     </div>
 

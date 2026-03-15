@@ -76,7 +76,7 @@ export default function AboutPage() {
             {/* MANIFESTO SCROLL REVEAL */}
             <section className="py-32 md:py-48 max-w-[1400px] mx-auto">
                 <div className="mb-16">
-                    <p className="text-danger text-sm font-bold tracking-[0.3em] uppercase mb-8">01. Manifesto</p>
+                    <p className="text-danger text-sm font-bold tracking-[0.3em] uppercase mb-8">01. MANIFESTO</p>
                 </div>
                 {/* Her satır Scroll edildikçe parlayacak */}
                 <ScrollRevealParagraph text={"Biz sokağın\nsessizliğini\nreddedenleriz.\nSıradanlığı değil\nkaliteyi\nyüceltenleriz."} />
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
                 <div className="relative z-10 max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
                     <div className="flex flex-col justify-center">
-                        <p className="text-danger text-sm font-bold tracking-[0.3em] uppercase mb-8">02. İşçilik (Craft)</p>
+                        <p className="text-danger text-sm font-bold tracking-[0.3em] uppercase mb-8">02. İŞÇİLİK (CRAFT)</p>
                         <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter mb-8 leading-none">
                             Tavizsiz <br /><span className="text-white/40">Materyaller.</span>
                         </h2>
@@ -138,7 +138,7 @@ export default function AboutPage() {
                         </motion.div>
                         <div className="absolute bottom-8 left-8 right-8">
                             <div className="h-px w-full bg-white/20 mb-4" />
-                            <p className="font-display text-2xl uppercase tracking-widest text-white">Heavyweight Foundation</p>
+                            <p className="font-display text-2xl uppercase tracking-widest text-white">HEAVYWEIGHT FOUNDATION</p>
                         </div>
                     </div>
                 </div>
