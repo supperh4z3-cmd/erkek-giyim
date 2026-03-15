@@ -51,6 +51,14 @@ export async function POST(req: NextRequest) {
                 });
                 break;
 
+            case "delivery_confirmation":
+                await emailModule.sendDeliveryConfirmation({
+                    orderId: "TEST-" + Date.now().toString(36).toUpperCase(),
+                    customerName: "Test Müşteri",
+                    customerEmail: email,
+                });
+                break;
+
             default:
                 return NextResponse.json({ error: "Bilinmeyen şablon" }, { status: 400 });
         }

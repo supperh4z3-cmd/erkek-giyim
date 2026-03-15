@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Eye, Edit3, Check, X, Send, Loader2, Package, Truck, UserPlus, Lock, Save } from "lucide-react";
+import { ArrowLeft, Mail, Eye, Edit3, Check, X, Send, Loader2, Package, Truck, UserPlus, Lock, Save, CheckCircle } from "lucide-react";
 
 interface EmailTemplate {
     key: string;
@@ -95,6 +95,29 @@ const DEFAULT_TEMPLATES: EmailTemplate[] = [
             <a href="#" style="display:inline-block;background:#ef4444;color:#fff;text-decoration:none;padding:14px 40px;border-radius:6px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin:24px 0;">Sifremi Sifirla</a>
             <div style="background:#0f0f0f;border:1px solid #1a1a1a;border-radius:8px;padding:12px 16px;margin:16px 0;">
                 <span style="font-size:11px;color:#999;">⏱ Bu baglanti <strong style="color:#ef4444">1 saat</strong> icerisinde gecerlidir.<br/>🔒 Eger bu istegi siz yapmadiysaniz, bu e-postayi dikkate almayin.</span>
+            </div>
+        </div>`,
+    },
+    {
+        key: "delivery_confirmation",
+        name: "Teslim Bildirimi",
+        icon: <CheckCircle className="w-5 h-5" />,
+        subject: "Siparişiniz Teslim Edildi! ✅ - {{order_id}} | CHASE & CHAIN",
+        description: "Sipariş teslim edildiğinde gönderilen bildirim. Müşteriye memnuniyet mesajı ve 14 gün iade hakkı hatırlatması içerir.",
+        variables: ["{{customer_name}}", "{{order_id}}"],
+        preview: `<div style="text-align:center;padding:20px;">
+            <div style="background:#0f1a0f;border:1px solid #152a15;border-radius:20px;padding:6px 18px;display:inline-block;margin-bottom:20px;">
+                <span style="font-size:10px;text-transform:uppercase;letter-spacing:3px;color:#22c55e;font-weight:700;">✅ Teslim Edildi</span>
+            </div>
+            <h2 style="color:#fff;font-size:22px;margin:0 0 8px;">Siparisin Teslim Edildi!</h2>
+            <p style="color:#666;font-size:13px;">Merhaba <strong style="color:#fff">{{customer_name}}</strong>, siparisin basariyla teslim edildi. Keyifle kullanmani dileriz!</p>
+            <div style="background:#0a1a0a;border:1px solid #152a15;border-radius:8px;padding:16px;margin:20px 0;text-align:center;">
+                <span style="font-size:9px;text-transform:uppercase;letter-spacing:4px;color:#555;">Siparis Numarasi</span><br/>
+                <span style="font-size:20px;font-weight:900;color:#22c55e;letter-spacing:3px;">{{order_id}}</span>
+            </div>
+            <div style="background:#0f0f0f;border:1px solid #1a1a1a;border-radius:8px;padding:12px 16px;margin:16px 0;text-align:left;display:flex;align-items:flex-start;gap:12px;">
+                <span style="width:32px;height:32px;background:#1a0f0f;border:1px solid #2a1515;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">💬</span>
+                <div><strong style="color:#fff;font-size:13px;">Memnun Kaldin mi?</strong><br/><span style="color:#666;font-size:11px;">Herhangi bir sorun varsa <strong style="color:#ef4444">14 gun</strong> icinde iade talebi olusturabilirsin.</span></div>
             </div>
         </div>`,
     },
