@@ -1,0 +1,62 @@
+{
+  "isActive": true,
+  "slides": [
+    {
+      "id": "slide-1",
+      "video": "/discover-1.mp4",
+      "title": "NIGHT RIDER",
+      "subtitle": "Premium Outwear Collection",
+      "theme": "danger",
+      "productName": "Utility Cargo Pants",
+      "productPrice": "₺1599.00",
+      "productImage": "/product-utility.png",
+      "productLink": "/product/bs-3",
+      "textEffect": "animate-police-strobe"
+    },
+    {
+      "id": "slide-2",
+      "video": "/discover-2.mp4",
+      "title": "THE CONCRETE",
+      "subtitle": "Denim & Bottoms Series",
+      "theme": "blue-600",
+      "productName": "Washed Baggy Denim",
+      "productPrice": "₺1899.00",
+      "productImage": "/category-denim.png",
+      "productLink": "/collections/bottoms",
+      "textEffect": "animate-pulse"
+    },
+    {
+      "id": "slide-3",
+      "video": "/discover-3.mp4",
+      "title": "STREET MONOLITH",
+      "subtitle": "Heavyweight Boxy Hoodies",
+      "theme": "purple-600",
+      "productName": "Blank Heavy Hoodie",
+      "productPrice": "₺1299.00",
+      "productImage": "/product-hoodie.png",
+      "productLink": "/product/bs-1",
+      "textEffect": "animate-glitch-text"
+    },
+    {
+      "id": "slide-4",
+      "video": "/discover-4.mp4",
+      "title": "THE HAZE",
+      "subtitle": "Accessories & Details",
+      "theme": "zinc-400",
+      "productName": "Chunky Silver Chain",
+      "productPrice": "₺899.00",
+      "productImage": "/category-accessories.png",
+      "productLink": "/collections/accessories",
+      "textEffect": "animate-ghost-fade"
+    }
+  ],
+  "editorProducts": [
+    { "id": "ep-1", "image": "/editor_product_1_1772991177327.png", "title": "Utility Vest", "price": "₺2100.00", "isLarge": true },
+    { "id": "ep-2", "image": "/editor_product_2_1772991193255.png", "title": "Distressed Knit", "price": "₺1800.00", "isLarge": false },
+    { "id": "ep-3", "image": "/editor_product_3_1772991221810.png", "title": "Biker Jacket", "price": "₺4500.00", "isLarge": false },
+    { "id": "ep-4", "image": "/editor_product_4_1772991238721.png", "title": "Techwear Cargo", "price": "₺1950.00", "isLarge": true },
+    { "id": "ep-5", "image": "/editor_product_5_1772991278327.png", "title": "Gothic Ring Set", "price": "₺550.00", "isLarge": false },
+    { "id": "ep-6", "image": "/editor_product_6_1772991279554.png", "title": "Balaclava Hoodie", "price": "₺1650.00", "isLarge": false },
+    { "id": "ep-7", "image": "/editor_product_7_1772991322931.png", "title": "Messenger Bag", "price": "₺1200.00", "isLarge": false }
+  ]
+}

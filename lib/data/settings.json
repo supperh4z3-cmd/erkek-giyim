@@ -1,0 +1,32 @@
+{
+  "announcement": {
+    "text": "YAZ SEZONU İNDİRİMLERİ BAŞLADI - TÜM ÜRÜNLERDE %20 İNDİRİM",
+    "isActive": true,
+    "link": "/new"
+  },
+  "hero": {
+    "video1": "/hero_video-1.mp4",
+    "video2": "/hero_video-2.mp4",
+    "title": "The Persona",
+    "subtitle": "New Season",
+    "buttonText": "KOLEKSİYONU KEŞFET",
+    "buttonLink": "/collections/all"
+  },
+  "socialLinks": {
+    "instagram": "https://instagram.com/ablukaonline",
+    "tiktok": "https://tiktok.com/@ablukaonline",
+    "twitter": "https://twitter.com/ablukaonline"
+  },
+  "general": {
+    "siteName": "Chase Chain Giyim",
+    "contactEmail": "info@chasechain.com",
+    "contactPhone": "+90 555 123 4567",
+    "address": "Moda Caddesi No:123 Kadıköy/İstanbul",
+    "footerText": "2026 Chase Chain. Tüm hakları saklıdır."
+  },
+  "globalImages": {
+    "logoUrl": "/logo-white.png",
+    "faviconUrl": "/favicon.ico",
+    "defaultOgImage": "/og-image.jpg"
+  }
+}

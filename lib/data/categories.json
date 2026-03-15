@@ -1,0 +1,24 @@
+{
+  "homepage": [
+    { "id": "cat-1", "title": "T-Shirts", "subtitle": "Oversized Fits", "image": "/category-tshirts.png", "link": "/collections/t-shirts" },
+    { "id": "cat-2", "title": "Bottoms", "subtitle": "Jeans & Cargos", "image": "/category-bottoms.png", "link": "/collections/bottoms" },
+    { "id": "cat-3", "title": "Outwear", "subtitle": "Heavy Jackets", "image": "/category-outwear.png", "link": "/collections/outwear" },
+    { "id": "cat-4", "title": "Knitwear", "subtitle": "Premium Sweats", "image": "/category-knitwear.png", "link": "/collections/knitwear" },
+    { "id": "cat-5", "title": "Denim Studio", "subtitle": "Raw & Washed", "image": "/category-denim.png", "link": "/collections/denim-studio" },
+    { "id": "cat-6", "title": "Hoodies", "subtitle": "Heavyweight Cotton", "image": "/product-zipup.png", "link": "/collections/hoodies" },
+    { "id": "cat-7", "title": "Accessories", "subtitle": "Details", "image": "/category-accessories.png", "link": "/collections/accessories" },
+    { "id": "cat-8", "title": "Headwear", "subtitle": "Caps", "image": "/category-headwear.png", "link": "/collections/headwear" },
+    { "id": "cat-9", "title": "Footwear", "subtitle": "Sneakers", "image": "/category-footwear.png", "link": "/collections/footwear" }
+  ],
+  "dropdown": [
+    { "id": "dl-1", "label": "T-Shirts", "link": "/collections/t-shirts" },
+    { "id": "dl-2", "label": "Bottoms", "link": "/collections/bottoms" },
+    { "id": "dl-3", "label": "Outwear", "link": "/collections/outwear" },
+    { "id": "dl-4", "label": "Knitwear", "link": "/collections/knitwear" },
+    { "id": "dl-5", "label": "Denim Studio", "link": "/collections/denim-studio" }
+  ],
+  "extraLinks": [
+    { "id": "el-1", "label": "Campaigns", "link": "/campaigns" },
+    { "id": "el-2", "label": "Sokağın Ritmi", "link": "/discover" }
+  ]
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "id": "ord-001",
+    "customerName": "Ahmet Yılmaz",
+    "customerEmail": "ahmet@example.com",
+    "customerPhone": "+90 532 111 2233",
+    "address": "Bağdat Caddesi No:45 Kadıköy/İstanbul",
+    "date": "2026-03-10T14:30:00Z",
+    "status": "pending",
+    "paymentStatus": "paid",
+    "total": 2098,
+    "trackingNumber": "",
+    "items": [
+      {
+        "productId": "prod-1",
+        "name": "Vintage Washed Oversized T-Shirt",
+        "size": "L",
+        "color": "Vintage Ash",
+        "quantity": 1,
+        "price": 699,
+        "image": "/category-tshirt.png"
+      },
+      {
+        "productId": "prod-2",
+        "name": "Heavyweight Zip-Up Hoodie",
+        "size": "M",
+        "color": "Washed Black",
+        "quantity": 1,
+        "price": 1399,
+        "image": "/product-zipup.png"
+      }
+    ]
+  },
+  {
+    "id": "ord-002",
+    "customerName": "Elif Demir",
+    "customerEmail": "elif@example.com",
+    "customerPhone": "+90 533 444 5566",
+    "address": "İstiklal Caddesi No:120 Beyoğlu/İstanbul",
+    "date": "2026-03-09T10:15:00Z",
+    "status": "shipped",
+    "paymentStatus": "paid",
+    "total": 1599,
+    "trackingNumber": "YK-7892341",
+    "items": [
+      {
+        "productId": "prod-3",
+        "name": "Utility Cargo Pants",
+        "size": "30/M",
+        "color": "Military Olive",
+        "quantity": 1,
+        "price": 1599,
+        "image": "/category-bottoms.png"
+      }
+    ]
+  },
+  {
+    "id": "ord-003",
+    "customerName": "Burak Kaya",
+    "customerEmail": "burak@example.com",
+    "customerPhone": "+90 535 777 8899",
+    "address": "Tunalı Hilmi Cad. No:88 Çankaya/Ankara",
+    "date": "2026-03-08T16:45:00Z",
+    "status": "delivered",
+    "paymentStatus": "paid",
+    "total": 3498,
+    "trackingNumber": "MNG-5643291",
+    "items": [
+      {
+        "productId": "prod-7",
+        "name": "Chunky Leather Boots",
+        "size": "43",
+        "color": "Jet Black",
+        "quantity": 1,
+        "price": 3499,
+        "image": "/category-footwear.png"
+      }
+    ]
+  },
+  {
+    "customerName": "Test KullanKullanici",
+    "customerEmail": "test@example.com",
+    "customerPhone": "+90 555 111 2233",
+    "address": "Test Mah. Test Sok. No:1, Kadikoy/Istanbul 34000",
+    "paymentStatus": "unpaid",
+    "total": 748.9,
+    "note": "",
+    "items": [
+      {
+        "productId": "prod-1",
+        "name": "Vintage Washed Oversized T-Shirt",
+        "size": "M",
+        "color": "Vintage Ash",
+        "quantity": 1,
+        "price": 699,
+        "image": "/category-tshirt.png"
+      }
+    ],
+    "id": "ord-004",
+    "date": "2026-03-12T13:06:41.473Z",
+    "status": "pending",
+    "trackingNumber": ""
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cust-001",
+    "name": "Ahmet Yılmaz",
+    "email": "ahmet@example.com",
+    "phone": "+90 532 111 2233",
+    "address": "Bağdat Caddesi No:45 Kadıköy/İstanbul",
+    "totalOrders": 1,
+    "totalSpent": 2098,
+    "createdAt": "2026-03-10T14:30:00Z"
+  },
+  {
+    "id": "cust-002",
+    "name": "Elif Demir",
+    "email": "elif@example.com",
+    "phone": "+90 533 444 5566",
+    "address": "İstiklal Caddesi No:120 Beyoğlu/İstanbul",
+    "totalOrders": 1,
+    "totalSpent": 1599,
+    "createdAt": "2026-03-09T10:15:00Z"
+  },
+  {
+    "id": "cust-003",
+    "name": "Burak Kaya",
+    "email": "burak@example.com",
+    "phone": "+90 535 777 8899",
+    "address": "Tunalı Hilmi Cad. No:88 Çankaya/Ankara",
+    "totalOrders": 1,
+    "totalSpent": 3498,
+    "createdAt": "2026-03-08T16:45:00Z"
+  }
+]

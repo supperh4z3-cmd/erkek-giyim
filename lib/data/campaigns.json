@@ -1,0 +1,29 @@
+{
+  "isActive": true,
+  "hero": {
+    "title": "Karanlığın İçinden",
+    "subtitle": "SS24 Koleksiyonu",
+    "season": "Sezon 04",
+    "image": "/campaign-hero.png",
+    "fontFamily": "font-display",
+    "alignment": "text-center items-center justify-center",
+    "textGradient": "bg-gradient-to-b from-white to-white/20"
+  },
+  "marqueeText": "NO COMPROMISE",
+  "lookbook": [
+    {
+      "id": "lb-1",
+      "title": "Sokak Silüeti",
+      "description": "Geniş kesimler ve asimetrik detaylar.",
+      "image": "/product-utility.png",
+      "link": "/product/heavyweight-zip-up-hoodie"
+    },
+    {
+      "id": "lb-2",
+      "title": "Heavy Denim",
+      "description": "Yıpratılmış dokular ve premium pamuk.",
+      "image": "/product-2.png",
+      "link": "/product/distressed-denim-jacket"
+    }
+  ]
+}
